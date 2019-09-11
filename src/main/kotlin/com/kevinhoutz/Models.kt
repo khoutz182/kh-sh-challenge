@@ -20,4 +20,11 @@ class RatePostRequest(
         val startDate: LocalDateTime,
         val endDate: LocalDateTime)
 
-class RateResponse(val rate: Int)
+@JsonIgnoreProperties
+class RateResponse(private val rate: Int?) {
+
+    @JsonGetter
+    fun getRate(): Any {
+        return rate ?: "unavailable"
+    }
+}

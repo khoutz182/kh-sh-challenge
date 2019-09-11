@@ -71,6 +71,6 @@ internal class RatesControllerTest {
                 .param("startDate", startDate.format(DateTimeFormatter.ISO_DATE_TIME))
                 .param("endDate", endDate.format(DateTimeFormatter.ISO_DATE_TIME)))
                 .andExpect(status().isNotFound)
-                .andExpect(status().reason(`is`("unavailable")))
+                .andExpect(jsonPath("$.rate", `is`("unavailable")))
     }
 }
