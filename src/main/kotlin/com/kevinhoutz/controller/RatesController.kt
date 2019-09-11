@@ -54,7 +54,7 @@ class RatesController(private val rateService: RateService) {
             RateResponse(rateService.getRate(startDate, endDate))
         } catch (e: UnavailableException) {
             response.status = HttpStatus.NOT_FOUND.value()
-            RateResponse(null)
+            RateResponse()
         }
     }
 
@@ -64,7 +64,7 @@ class RatesController(private val rateService: RateService) {
             RateResponse(rateService.getRate(body.startDate, body.endDate))
         } catch (e: UnavailableException) {
             response.status = HttpStatus.NOT_FOUND.value()
-            RateResponse(null)
+            RateResponse()
         }
     }
 }

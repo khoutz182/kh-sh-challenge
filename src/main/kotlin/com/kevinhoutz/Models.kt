@@ -22,6 +22,7 @@ class RatePostRequest(
 
 @JsonIgnoreProperties
 class RateResponse(private val rate: Int?) {
+    constructor() : this(null)
 
     @JsonGetter
     fun getRate(): Any {
