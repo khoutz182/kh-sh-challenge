@@ -9,6 +9,11 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.io.Resource
 
+/**
+ * Provides:
+ *  - [RateConfig] - Intial rate configuration loaded from the rates.json classpath resource
+ * @author khoutz
+ */
 @Configuration
 class MiniSpotHeroConfiguration(@Value("classpath:rates.json") val ratesResource: Resource) {
 

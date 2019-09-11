@@ -1,6 +1,6 @@
 package com.kevinhoutz.service
 
-import com.kevinhoutz.Models
+import com.kevinhoutz.TestModels
 import com.kevinhoutz.RateConfig
 import com.kevinhoutz.exception.UnavailableException
 import org.junit.jupiter.api.Assertions
@@ -15,7 +15,7 @@ internal class RateServiceImplTest {
 
     @BeforeEach
     internal fun setUp() {
-        rateService = RateServiceImpl(RateConfig(rates = Models.RATES))
+        rateService = RateServiceImpl(RateConfig(rates = TestModels.RATES))
     }
 
     @Test

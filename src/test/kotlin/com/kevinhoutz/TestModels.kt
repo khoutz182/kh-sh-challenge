@@ -1,6 +1,6 @@
 package com.kevinhoutz
 
-class Models {
+class TestModels {
     companion object {
         val RATES = arrayOf(
                 Rate(days = "mon,tues,thurs", times = "0900-2100", tz = "America/Chicago", price = 1500),

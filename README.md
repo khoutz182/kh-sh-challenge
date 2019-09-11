@@ -6,8 +6,8 @@
  - GET `/rates/current`
  -- Get the current rate configuration object as json
  - GET `/rates/lookup`
- -- Takes a `startDate` and `endDate` datetime query parameter, each formatted as ISO-8601.
- -- Returns a rate as an integer or "unavailable" if no rate is specified in the configuration or the input dates are invalid.
+ -- Takes a `startDate` and `endDate` datetime query parameter, each formatted as ISO-8601. 
+    Returns a rate as an integer or "unavailable" if no rate is specified in the configuration or the input dates are invalid.
  - POST `/rates/lookup`
  -- Takes a json payload with `startDate` and `endDate` formatted as ISO-8601, otherwise same as the GET request with the same path.
 

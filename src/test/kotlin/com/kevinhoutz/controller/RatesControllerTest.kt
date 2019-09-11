@@ -1,6 +1,6 @@
 package com.kevinhoutz.controller
 
-import com.kevinhoutz.Models
+import com.kevinhoutz.TestModels
 import com.kevinhoutz.RateConfig
 import com.kevinhoutz.service.RateService
 import org.hamcrest.Matchers.`is`
@@ -31,7 +31,7 @@ internal class RatesControllerTest {
 
     @Before
     fun setUp() {
-        `when`(rateService.currentRates()).thenReturn(RateConfig(Models.RATES))
+        `when`(rateService.currentRates()).thenReturn(RateConfig(TestModels.RATES))
     }
 
     @Test

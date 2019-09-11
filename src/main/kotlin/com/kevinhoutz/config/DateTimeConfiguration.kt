@@ -6,12 +6,14 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import java.time.format.DateTimeFormatter
 
-
+/**
+ * Provides:
+ *  - [Jackson2ObjectMapperBuilderCustomizer] - Customized to deserialize DateTime strings in ISO-8601 format
+ *
+ * @author khoutz
+ */
 @Configuration
 class DateTimeConfiguration {
-
-    private val dateFormat = "yyyy-MM-dd"
-    private val dateTimeFormat = "yyyy-MM-dd HH:mm:ss"
 
     @Bean
     fun customJson(): Jackson2ObjectMapperBuilderCustomizer {
