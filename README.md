@@ -14,8 +14,8 @@
 ### Build, Test, and Run
 You need git, java 8, a kotlin compiler, and maven. To build and test: 
 
-    $ git clone <clone url>
-    $ cd sh-challenge
+    $ git clone https://github.com/khoutz182/kh-sh-challenge.git
+    $ cd kh-sh-challenge
     $ mvn clean package
 
 And finally, to run the application:
