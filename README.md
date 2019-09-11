@@ -54,6 +54,10 @@ To lookup a rate for a specified date and time:
 
     $ curl "http://localhost:8080/rates/lookup?endDate=2015-07-01T12%3A00%3A00-05%3A00&startDate=2015-07-01T07%3A00%3A00-05%3A00"
 
+To lookup a rate for an invalid date and time range;
+
+    $ curl "http://localhost:8080/rates/lookup?endDate=2015-07-04T20%3A00%3A00%2B05%3A00&startDate=2015-07-04T07%3A00%3A00%2B05%3A00"
+
 Or To lookup a rate using a json payload:
 
     $ echo '{"startDate":"2015-07-01T07:00:00-05:00","endDate":"2015-07-01T12:00:00-05:00"}' > payload.json

@@ -2,12 +2,14 @@ package com.kevinhoutz.controller
 
 import com.kevinhoutz.TestModels
 import com.kevinhoutz.RateConfig
+import com.kevinhoutz.exception.UnavailableException
 import com.kevinhoutz.service.RateService
 import org.hamcrest.Matchers.`is`
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito.`when`
+import org.mockito.Mockito.doAnswer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
@@ -53,6 +55,22 @@ internal class RatesControllerTest {
                 .param("startDate", startDate.format(DateTimeFormatter.ISO_DATE_TIME))
                 .param("endDate", endDate.format(DateTimeFormatter.ISO_DATE_TIME)))
                 .andExpect(status().isOk)
-                .andExpect(jsonPath("$", `is`(1750)))
+                .andExpect(jsonPath("$.rate", `is`(1750)))
+    }
+
+    @Test
+    fun lookupRate_unavailable() {
+        val startDate = LocalDateTime.parse("2015-07-01T07:00:00-05:00", DateTimeFormatter.ISO_DATE_TIME)
+        val endDate = LocalDateTime.parse("2015-07-01T12:00:00-05:00", DateTimeFormatter.ISO_DATE_TIME)
+
+        doAnswer{
+            throw UnavailableException()
+        }.`when`(rateService).getRate(startDate, endDate)
+
+        mockMvc.perform(get("/rates/lookup")
+                .param("startDate", startDate.format(DateTimeFormatter.ISO_DATE_TIME))
+                .param("endDate", endDate.format(DateTimeFormatter.ISO_DATE_TIME)))
+                .andExpect(status().isNotFound)
+                .andExpect(status().reason(`is`("unavailable")))
     }
 }

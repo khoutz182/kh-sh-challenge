@@ -2,12 +2,14 @@ package com.kevinhoutz.controller
 
 import com.kevinhoutz.RateConfig
 import com.kevinhoutz.RatePostRequest
+import com.kevinhoutz.RateResponse
 import com.kevinhoutz.service.RateService
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiParam
 import org.springframework.format.annotation.DateTimeFormat
 import org.springframework.web.bind.annotation.*
 import java.time.LocalDateTime
+import javax.servlet.http.HttpServletResponse
 
 /**
  * Provides access to the rates config as well as lookups in to the rates available for certain datetime ranges.
@@ -44,12 +46,12 @@ class RatesController(private val rateService: RateService) {
                    @RequestParam
                    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
                    @ApiParam(required = true, name = "End Date", example = "2015-07-01T12:00:00-05:00")
-                   endDate: LocalDateTime): Int {
-        return rateService.getRate(startDate, endDate)
+                   endDate: LocalDateTime): RateResponse {
+        return RateResponse(rateService.getRate(startDate, endDate))
     }
 
     @PostMapping("/lookup")
-    fun lookupRate(@RequestBody body: RatePostRequest): Int {
-        return rateService.getRate(body.startDate, body.endDate)
+    fun lookupRate(@RequestBody body: RatePostRequest): RateResponse {
+        return RateResponse(rateService.getRate(body.startDate, body.endDate))
     }
 }

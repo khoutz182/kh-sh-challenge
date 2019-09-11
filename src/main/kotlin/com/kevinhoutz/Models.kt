@@ -1,5 +1,7 @@
 package com.kevinhoutz
 
+import com.fasterxml.jackson.annotation.JsonGetter
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import java.time.LocalDateTime
 
 data class Rate(
@@ -17,3 +19,5 @@ open class RateConfig(var rates: Array<Rate>)
 class RatePostRequest(
         val startDate: LocalDateTime,
         val endDate: LocalDateTime)
+
+class RateResponse(val rate: Int)
